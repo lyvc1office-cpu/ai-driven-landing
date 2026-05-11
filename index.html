@@ -1070,11 +1070,43 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
     if(document.getElementById('f-ai').value===''){se('ai',true);ok=false;}else se('ai',false);
     return ok;
   }
-  document.getElementById('regForm').addEventListener('submit',function(e){
+document.getElementById('regForm').addEventListener('submit', function(e){
     e.preventDefault();
+    
     if(validate()){
-      document.getElementById('popup-overlay').classList.add('open');
-      document.body.style.overflow='hidden';
+      // Hiển thị trạng thái đang tải trên nút bấm
+      var btn = this.querySelector('.f-sub-btn');
+      var oldText = btn.innerText;
+      btn.innerText = "Đang gửi dữ liệu...";
+      btn.disabled = true;
+
+      // Gom dữ liệu từ các ô input
+      var formData = new FormData();
+      formData.append('name', document.getElementById('f-name').value.trim());
+      formData.append('phone', document.getElementById('f-phone').value.trim());
+      formData.append('email', document.getElementById('f-email').value.trim());
+      formData.append('co', document.getElementById('f-co').value.trim());
+      formData.append('size', document.getElementById('f-size').value);
+      formData.append('ai', document.getElementById('f-ai').value);
+
+      // Thay chuỗi này bằng link Web App bạn lấy từ Google Apps Script
+      var scriptURL = 'https://script.google.com/macros/s/AKfycbxvkRyuno2sZPE2adbekyoKOvSi_dLTDFVNY6vTsF16Mu8lKch0L1-UfncRs6LO51vm/exec';
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(function(response) {
+          // Khi gửi thành công: Hiển thị popup, khóa scroll và xóa form
+          document.getElementById('popup-overlay').classList.add('open');
+          document.body.style.overflow='hidden';
+          document.getElementById('regForm').reset();
+          btn.innerText = oldText;
+          btn.disabled = false;
+        })
+        .catch(function(error) {
+          console.error('Lỗi!', error.message);
+          alert("Có lỗi xảy ra, vui lòng thử lại.");
+          btn.innerText = oldText;
+          btn.disabled = false;
+        });
     }
   });
   function closePopup(){document.getElementById('popup-overlay').classList.remove('open');document.body.style.overflow='';}
