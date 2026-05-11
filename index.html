@@ -874,6 +874,15 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
       <form id="regForm" novalidate>
         <div class="f-grid">
           <div class="f-g f-full">
+  <label class="f-lbl" for="f-salutation">Danh xưng <span class="req">*</span></label>
+  <select class="f-sel" id="f-salutation" name="salutation" required>
+    <option value="">Chọn danh xưng</option>
+    <option value="Anh">Anh</option>
+    <option value="Chị">Chị</option>
+  </select>
+  <span class="f-err" id="e-salutation">Vui lòng chọn danh xưng</span>
+</div>
+          <div class="f-g f-full">
             <label class="f-lbl" for="f-name">Họ và tên <span class="req">*</span></label>
             <input class="f-in" id="f-name" type="text" placeholder="Nhập họ và tên đầy đủ" required autocomplete="name">
             <span class="f-err" id="e-name">Vui lòng nhập họ và tên</span>
