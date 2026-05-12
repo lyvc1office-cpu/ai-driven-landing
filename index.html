@@ -873,89 +873,73 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
     <div class="f-wrap aos">
       <form id="regForm" novalidate>
         <div class="f-grid">
+          
           <div class="f-g f-full">
-  <label class="f-lbl" for="f-salutation">Danh xưng <span class="req">*</span></label>
-  <select class="f-sel" id="f-salutation" name="salutation" required>
-    <option value="">Chọn danh xưng</option>
-    <option value="Anh">Anh</option>
-    <option value="Chị">Chị</option>
-  </select>
-  <span class="f-err" id="e-salutation">Vui lòng chọn danh xưng</span>
-</div>
+            <label class="f-lbl" for="f-salutation">Danh xưng <span class="req">*</span></label>
+            <select class="f-sel" id="f-salutation" name="salutation" required>
+              <option value="">Chọn danh xưng</option>
+              <option value="Anh">Anh</option>
+              <option value="Chị">Chị</option>
+            </select>
+            <span class="f-err" id="e-salutation">Vui lòng chọn danh xưng</span>
+          </div>
+          
           <div class="f-g f-full">
             <label class="f-lbl" for="f-name">Họ và tên <span class="req">*</span></label>
-            <input class="f-in" id="f-name" type="text" placeholder="Nhập họ và tên đầy đủ" required autocomplete="name">
+            <input class="f-in" id="f-name" name="fullname" type="text" placeholder="Nhập họ và tên đầy đủ" required autocomplete="name">
             <span class="f-err" id="e-name">Vui lòng nhập họ và tên</span>
           </div>
+          
           <div class="f-g">
             <label class="f-lbl" for="f-pos">Chức vụ <span class="req">*</span></label>
-            <select class="f-sel" id="f-pos" required>
+            <select class="f-sel" id="f-pos" name="position" required>
               <option value="">— Chọn chức vụ —</option>
-              <option value="ceo">CEO / Giám đốc / Chủ doanh nghiệp</option>
-              <option value="mgr">Quản lý / Trưởng phòng</option>
-              <option value="staff">Chuyên viên / Nhân viên</option>
+              <option value="CEO / Giám đốc / Chủ doanh nghiệp">CEO / Giám đốc / Chủ doanh nghiệp</option>
+              <option value="Quản lý / Trưởng phòng">Quản lý / Trưởng phòng</option>
+              <option value="Chuyên viên / Nhân viên">Chuyên viên / Nhân viên</option>
             </select>
             <span class="f-err" id="e-pos">Vui lòng chọn chức vụ</span>
           </div>
+          
           <div class="f-g f-full">
-  <label class="f-lbl" for="f-booth">Chủ đề tư vấn quan tâm <span class="req">*</span></label>
-  <select class="f-sel" id="f-booth" name="booth_interest" required>
-    <option value="">Chọn chủ đề tư vấn</option>
-    <option value="AI cho CEO / Lãnh đạo">AI cho CEO / Lãnh đạo</option>
-    <option value="AI cho Vận hành & Quy trình">AI cho Vận hành & Quy trình</option>
-    <option value="AI cho Nhân sự & Tuyển dụng">AI cho Nhân sự & Tuyển dụng</option>
-    <option value="AI cho Lương & Tài chính nhân sự">AI cho Lương & Tài chính nhân sự</option>
-  </select>
-  <span class="f-err" id="e-booth">Vui lòng chọn chủ đề tư vấn</span>
-</div>
+            <label class="f-lbl" for="f-booth">Chủ đề tư vấn quan tâm <span class="req">*</span></label>
+            <select class="f-sel" id="f-booth" name="booth_interest" required>
+              <option value="">Chọn chủ đề tư vấn</option>
+              <option value="AI cho CEO / Lãnh đạo">AI cho CEO / Lãnh đạo</option>
+              <option value="AI cho Vận hành & Quy trình">AI cho Vận hành & Quy trình</option>
+              <option value="AI cho Nhân sự & Tuyển dụng">AI cho Nhân sự & Tuyển dụng</option>
+              <option value="AI cho Lương & Tài chính nhân sự">AI cho Lương & Tài chính nhân sự</option>
+            </select>
+            <span class="f-err" id="e-booth">Vui lòng chọn chủ đề tư vấn</span>
+          </div>
+          
           <div class="f-g">
             <label class="f-lbl" for="f-phone">Số điện thoại <span class="req">*</span></label>
-            <input class="f-in" id="f-phone" type="tel" placeholder="0xxxxxxxxx" required autocomplete="tel" maxlength="10">
+            <input class="f-in" id="f-phone" name="phone" type="tel" placeholder="0xxxxxxxxx" required autocomplete="tel" maxlength="10">
             <span class="f-err" id="e-phone">Số điện thoại hợp lệ (10 số)</span>
           </div>
+          
           <div class="f-g">
             <label class="f-lbl" for="f-email">Email <span class="req">*</span></label>
-            <input class="f-in" id="f-email" type="email" placeholder="email@company.com" required autocomplete="email">
+            <input class="f-in" id="f-email" name="email" type="email" placeholder="email@company.com" required autocomplete="email">
             <span class="f-err" id="e-email">Vui lòng nhập email hợp lệ</span>
           </div>
+          
           <div class="f-g f-full">
             <label class="f-lbl" for="f-co">Tên doanh nghiệp <span class="req">*</span></label>
-            <input class="f-in" id="f-co" type="text" placeholder="Nhập tên công ty / doanh nghiệp" required autocomplete="organization">
+            <input class="f-in" id="f-co" name="company" type="text" placeholder="Nhập tên công ty / doanh nghiệp" required autocomplete="organization">
             <span class="f-err" id="e-co">Vui lòng nhập tên doanh nghiệp</span>
           </div>
+          
           <div class="f-g">
             <label class="f-lbl" for="f-size">Quy mô nhân sự <span class="req">*</span></label>
-            <select class="f-sel" id="f-size" required>
+            <select class="f-sel" id="f-size" name="size" required>
               <option value="">— Chọn quy mô —</option>
               <option value="50-100">50 – 100 nhân sự</option>
               <option value="100-300">100 – 300 nhân sự</option>
               <option value="300+">Trên 300 nhân sự</option>
             </select>
-            <span class="f-err" id="e-size">Vui lòng chọn quy mô nhân sự</span>
-          </div>
-          <div class="f-g">
-            <label class="f-lbl" for="f-ai">Mức độ ứng dụng AI <span class="req">*</span></label>
-            <select class="f-sel" id="f-ai" required>
-              <option value="">— Chọn mức độ —</option>
-              <option value="0">Chưa ứng dụng, đang tìm hiểu</option>
-              <option value="1">Đã dùng vài công cụ AI rời rạc</option>
-              <option value="2">Đang triển khai AI vào quy trình nội bộ</option>
-              <option value="3">AI đã tích hợp xuyên suốt vận hành</option>
-            </select>
-            <span class="f-err" id="e-ai">Vui lòng chọn mức độ ứng dụng AI</span>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-o f-sub-btn">
-          Xác nhận tham gia ngay
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-        </button>
-       <p style="margin-top:12px; font-size:13px; line-height:1.5; color:#F26A21; font-style:italic;">
-  <strong>** Lưu ý:</strong> Sự kiện dành cho cấp Quản lý/Manager và C-level tại doanh nghiệp từ 50 nhân sự trở lên. 1Office sẽ liên hệ lại để xác nhận thông tin và điều kiện tham dự.
-</p>
-      </form>
-    </div>
-  </div>
-</section>
+            <span class="f-err" id="
 
 <!-- ══ FOOTER ══ -->
 <footer>
