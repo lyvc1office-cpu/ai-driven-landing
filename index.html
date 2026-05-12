@@ -1056,8 +1056,12 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
   function se(id,show){var e=document.getElementById('e-'+id),i=document.getElementById('f-'+id);if(e)e.classList.toggle('show',show);if(i)i.classList.toggle('err',show);}
   function validate(){
     var ok=true;
+    // Bổ sung kiểm tra Danh xưng & Chủ đề
+    if(!document.getElementById('f-salutation').value){se('salutation',true);ok=false;}else se('salutation',false);
     if(!document.getElementById('f-name').value.trim()){se('name',true);ok=false;}else se('name',false);
     if(!document.getElementById('f-pos').value){se('pos',true);ok=false;}else se('pos',false);
+    if(!document.getElementById('f-booth').value){se('booth',true);ok=false;}else se('booth',false);
+    
     var ph=document.getElementById('f-phone').value.trim();
     if(!ph||!/^(0[3-9]\d{8})$/.test(ph)){se('phone',true);ok=false;}else se('phone',false);
     var em=document.getElementById('f-email').value.trim();
@@ -1067,31 +1071,33 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
     if(document.getElementById('f-ai').value===''){se('ai',true);ok=false;}else se('ai',false);
     return ok;
   }
-document.getElementById('regForm').addEventListener('submit', function(e){
+
+  document.getElementById('regForm').addEventListener('submit', function(e){
     e.preventDefault();
     
     if(validate()){
-      // Hiển thị trạng thái đang tải trên nút bấm
       var btn = this.querySelector('.f-sub-btn');
       var oldText = btn.innerText;
       btn.innerText = "Đang gửi dữ liệu...";
       btn.disabled = true;
 
-      // Gom dữ liệu từ các ô input
+      // Gom ĐẦY ĐỦ dữ liệu từ tất cả các trường
       var formData = new FormData();
-      formData.append('name', document.getElementById('f-name').value.trim());
+      formData.append('salutation', document.getElementById('f-salutation').value);
+      formData.append('fullname', document.getElementById('f-name').value.trim());
+      formData.append('position', document.getElementById('f-pos').value);
+      formData.append('booth_interest', document.getElementById('f-booth').value);
       formData.append('phone', document.getElementById('f-phone').value.trim());
       formData.append('email', document.getElementById('f-email').value.trim());
-      formData.append('co', document.getElementById('f-co').value.trim());
+      formData.append('company', document.getElementById('f-co').value.trim());
       formData.append('size', document.getElementById('f-size').value);
-      formData.append('ai', document.getElementById('f-ai').value);
+      formData.append('ai_level', document.getElementById('f-ai').value);
 
-      // Thay chuỗi này bằng link Web App bạn lấy từ Google Apps Script
+      // Link Web App URL của bạn
       var scriptURL = 'https://script.google.com/macros/s/AKfycbxvkRyuno2sZPE2adbekyoKOvSi_dLTDFVNY6vTsF16Mu8lKch0L1-UfncRs6LO51vm/exec';
 
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(function(response) {
-          // Khi gửi thành công: Hiển thị popup, khóa scroll và xóa form
           document.getElementById('popup-overlay').classList.add('open');
           document.body.style.overflow='hidden';
           document.getElementById('regForm').reset();
@@ -1106,13 +1112,17 @@ document.getElementById('regForm').addEventListener('submit', function(e){
         });
     }
   });
+
   function closePopup(){document.getElementById('popup-overlay').classList.remove('open');document.body.style.overflow='';}
   document.getElementById('popup-close').addEventListener('click',closePopup);
   document.getElementById('popup-overlay').addEventListener('click',function(e){if(e.target===this)closePopup();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
+  
   ['name','phone','email'].forEach(function(id){var el=document.getElementById('f-'+id);if(el)el.addEventListener('input',function(){se(id,false);el.classList.remove('err');});});
   var fc=document.getElementById('f-co');if(fc)fc.addEventListener('input',function(){se('co',false);fc.classList.remove('err');});
-  ['pos','size','ai'].forEach(function(id){var el=document.getElementById('f-'+id);if(el)el.addEventListener('change',function(){se(id,false);el.classList.remove('err');});});
+  
+  // Bổ sung các trường mới vào hàm bỏ báo lỗi khi user thao tác
+  ['salutation','pos','booth','size','ai'].forEach(function(id){var el=document.getElementById('f-'+id);if(el)el.addEventListener('change',function(){se(id,false);el.classList.remove('err');});});
 })();
 </script>
 </body>
