@@ -1118,6 +1118,8 @@ footer{background:var(--dark);color:#fff;padding:52px 0 28px}
       formData.append('company', document.getElementById('f-co').value.trim());
       formData.append('size', document.getElementById('f-size').value);
       formData.append('ai_level', document.getElementById('f-ai').value);
+      // BỔ SUNG: Tự động lấy URL của trang hiện tại khi khách bấm đăng ký
+      formData.append('source_url', window.location.href);
 
       // Link Web App URL của bạn
       var scriptURL = 'https://script.google.com/macros/s/AKfycbyYAKklcxBssjPGBS9GhhdCStwMU5Friwc1InDZwkUJQ8bnwEgMHAS2sVENU3XGPLTI/exec';
